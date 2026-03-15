@@ -1,0 +1,94 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+enum Experience {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+model User {
+  id         String   @id @default(uuid())
+  name       String
+  email      String   @unique
+  image      String?
+  provider   String?
+  providerId String?
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Relations
+  profile     Profile?
+  matchesA    Match[] @relation("UserA")
+  matchesB    Match[] @relation("UserB")
+  embedding   Embedding?
+}
+
+model Profile {
+  id           String     @id @default(uuid())
+  userId       String     @unique
+
+  bio          String?
+  experience   Experience
+  skills       String
+  goals        String
+  availability String
+  timezone     String
+
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  // Relation
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Match {
+  id        String   @id @default(uuid())
+
+  userAId   String
+  userBId   String
+
+  status    String
+  score     Float?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  userA User @relation("UserA", fields: [userAId], references: [id])
+  userB User @relation("UserB", fields: [userBId], references: [id])
+}
+
+model Embedding {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+
+  embedding Unsupported("vector(1536)")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relation
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
