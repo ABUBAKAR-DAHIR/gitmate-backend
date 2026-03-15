@@ -5,8 +5,6 @@
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=4F46E5&center=true&vCenter=true&width=600&lines=Connecting+Developers;Hackathons+to+Projects;Find+Your+Perfect+Coding+Partner" alt="Typing SVG" />
 </p>
 
-<br/>
-
 GitMate is a **developer collaboration platform** that helps developers find coding partners based on skills, goals, experience, and availability. Whether for hackathons, open-source projects, or learning, GitMate simplifies collaboration and matches developers efficiently.
 
 ---
@@ -40,7 +38,7 @@ GitMate is a **developer collaboration platform** that helps developers find cod
 ## Tech Stack
 
 - **Backend**: NestJS, Node.js  
-- **Database**: PostgreSQL with Prisma ORM, pgvector for embeddings  
+- **Database**: PostgreSQL with Prisma ORM hosted on NeonDB, pgvector for embeddings  
 - **Authentication**: OAuth (Google & GitHub)  
 - **AI / Recommendation**: OpenAI embeddings API  
 
