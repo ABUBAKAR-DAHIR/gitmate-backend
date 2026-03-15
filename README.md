@@ -1,98 +1,161 @@
+# GitMate – Find Your Coding Partner 🚀
+
+<br/>
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=4F46E5&center=true&vCenter=true&width=600&lines=Connecting+Developers;Hackathons+to+Projects;Find+Your+Perfect+Coding+Partner" alt="Typing SVG" />
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<br/>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+GitMate is a **developer collaboration platform** that helps developers find coding partners based on skills, goals, experience, and availability. Whether for hackathons, open-source projects, or learning, GitMate simplifies collaboration and matches developers efficiently.
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## The Promise
 
-## Project setup
+- **Instant partner recommendations**  
+  Find the right coding partner using smart AI-based embeddings.
 
-```bash
-$ pnpm install
+- **Developer-first design**  
+  Seamless experience for creating profiles, browsing matches, and managing collaborations.
+
+- **AI-powered matching**  
+  Uses vector embeddings to compute similarity between profiles for the best matches.
+
+- **Secure & flexible authentication**  
+  OAuth login via Google or GitHub, with secure sessions.
+
+---
+
+## What It Does
+
+1. Users create their profile with skills, goals, experience, and availability.  
+2. Profile data is converted into embeddings for similarity matching.  
+3. GitMate backend queries the embeddings table and calculates match scores.  
+4. The system returns a ranked list of potential coding partners.  
+5. Users can accept matches, chat, or collaborate on projects.
+
+---
+
+## Tech Stack
+
+- **Backend**: NestJS, Node.js  
+- **Database**: PostgreSQL with Prisma ORM, pgvector for embeddings  
+- **Authentication**: OAuth (Google & GitHub)  
+- **AI / Recommendation**: OpenAI embeddings API  
+
+---
+
+## Folder Structure
+
+```text
+gitmate/
+├─ dist/
+├─ generated/
+├─ node_modules/
+├─ prisma/
+│ ├─ migrations/
+│ │ └─ 20260315040140_init/
+│ └─ schema.prisma
+├─ seeds/
+│ └─ seed.ts
+├─ src/
+│ ├─ auth/
+│ │ ├─ guards/
+│ │ │ ├─ github.guard.ts
+│ │ │ ├─ google.guard.ts
+│ │ │ └─ jwt.guard.ts
+│ │ ├─ strategies/
+│ │ │ ├─ github.strategy.ts
+│ │ │ └─ google.strategy.ts
+│ │ ├─ auth.controller.ts
+│ │ ├─ auth.controller.spec.ts
+│ │ ├─ auth.module.ts
+│ │ ├─ auth.service.ts
+│ │ └─ auth.service.spec.ts
+│ ├─ app.controller.ts
+│ ├─ app.controller.spec.ts
+│ ├─ app.module.ts
+│ ├─ app.service.ts
+│ └─ main.ts
+├─ test/
+│ ├─ app.e2e-spec.ts
+│ └─ jest-e2e.json
+├─ .env
+├─ .gitignore
+├─ package.json
+├─ pnpm-lock.yaml
+├─ prisma.config.ts
+├─ README.md
+├─ tsconfig.build.json
+├─ tsconfig.json
+└─ eslint.config.mjs
+
 ```
 
-## Compile and run the project
+## Tech Stack
+
+- **Backend**: NestJS, Node.js  
+- **Database**: PostgreSQL with Prisma ORM, pgvector for embeddings  
+- **Authentication**: OAuth (Google & GitHub)  
+- **AI / Recommendation**: OpenAI embeddings API  
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Node.js ≥ 20  
+- PostgreSQL (Neon or local)  
+- pnpm / npm / yarn  ( preferrably pnpm)
+
+### Installation
 
 ```bash
-# development
-$ pnpm run start
+# Clone the repo
+git clone https://github.com/abubakar-dahir/gitmate-backend.git
+cd gitmate-backend
 
-# watch mode
-$ pnpm run start:dev
+# Install dependencies
+pnpm install
 
-# production mode
-$ pnpm run start:prod
+# Initialize Prisma & generate client
+pnpm dlx prisma generate
+pnpm dlx prisma migrate dev --name init
+
+# Start development server
+pnpm start:dev
 ```
 
-## Run tests
+## Environment Variables
 
-```bash
-# unit tests
-$ pnpm run test
+Create a `.env` file in the root directory:
 
-# e2e tests
-$ pnpm run test:e2e
+```env
+DATABASE_URL="postgresql://user:password@host:port/dbname"
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+GITHUB_CLIENT_ID="your-github-client-id"
+GITHUB_CLIENT_SECRET="your-github-client-secret"
+EMBEDDING_API_KEY="your-embedding-api-key"
 
-# test coverage
-$ pnpm run test:cov
 ```
 
-## Deployment
+## Status
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Fully functional backend and frontend, AI matching integrated, actively iterating features, and improving the recommendation engine.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+---
 
-```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
-```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Author
 
-## Resources
+Developed and maintained by **Abubakar, Aniket, Ayush, and Yagna**
 
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+---
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+MIT License © GitMate Team
+
+---
