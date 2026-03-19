@@ -16,20 +16,20 @@ export class AuthController {
 
   @Get('google/callback')
   @UseGuards(GoogleAuthGuard)
-  googleRedirect(@Req() req, @Res() res) {
-    const user = req.user
+  googleRedirect(@Req() req, @Res() res:any) {
+    // const user = req.user
 
-    const token = this.authService.generateToken(user);
+    // const token = this.authService.generateToken(user);
 
-    res.cookie('access_token', token, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'lax'
-    })
+    // res.cookie('access_token', token, {
+    //   httpOnly: true,
+    //   secure: false,
+    //   sameSite: 'lax'
+    // })
 
-    return res.redirect("http://localhost:8081")
+    // return res.redirect("http://localhost:8081")
 
-    // return req.user
+    return res.json(req.user)
   }
 
   @Get("github")
@@ -38,23 +38,24 @@ export class AuthController {
 
   @Get("github/callback")
   @UseGuards(GithubAuthGuard)
-  async GithubRedirect(@Req() req, @Res() res){
+  async GithubRedirect(@Req() req: any, @Res() res: any){
     const user = req.user
 
-    const token = this.authService.generateToken(user);
+    // const token = this.authService.generateToken(user);
 
-    res.cookie('access_token', token, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'lax'
-    })
+    // res.cookie('access_token', token, {
+    //   httpOnly: true,
+    //   secure: false,
+    //   sameSite: 'lax'
+    // })
 
-    return res.redirect("http://localhost:8081")
+    // return res.redirect("http://localhost:8081")
+    return res.json(user)
   }
 
   @Get('me')
   @UseGuards(JwtAuthGuard)
-  getCurrentUser(@Req() req){
+  getCurrentUser(@Req() req: any){
     return {
       isLoggedIn: true,
       user: req.user
