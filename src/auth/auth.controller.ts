@@ -3,6 +3,7 @@ import { GoogleAuthGuard } from './guards/google.guard'
 import { GithubAuthGuard } from './guards/github.guard'
 import { AuthService } from './auth.service'
 import { JwtAuthGuard } from './guards/jwt.guard'
+import path from 'path'
 // import { GoogleAuthGuard } from './guards/google-auth.guard'
 
 @Controller('auth')
@@ -17,19 +18,20 @@ export class AuthController {
   @Get('google/callback')
   @UseGuards(GoogleAuthGuard)
   googleRedirect(@Req() req, @Res() res:any) {
-    // const user = req.user
+    const user = req.user
 
-    // const token = this.authService.generateToken(user);
+    const token = this.authService.generateToken(user);
 
-    // res.cookie('access_token', token, {
-    //   httpOnly: true,
-    //   secure: false,
-    //   sameSite: 'lax'
-    // })
+    res.cookie('access_token', token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      path: '/'
+    })
 
-    // return res.redirect("http://localhost:8081")
+    return res.redirect("http://localhost:8081")
 
-    return res.json(req.user)
+    // return res.json(req.user)
   }
 
   @Get("github")
@@ -41,16 +43,17 @@ export class AuthController {
   async GithubRedirect(@Req() req: any, @Res() res: any){
     const user = req.user
 
-    // const token = this.authService.generateToken(user);
+    const token = this.authService.generateToken(user);
 
-    // res.cookie('access_token', token, {
-    //   httpOnly: true,
-    //   secure: false,
-    //   sameSite: 'lax'
-    // })
+    res.cookie('access_token', token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      path: '/'
+    })
 
-    // return res.redirect("http://localhost:8081")
-    return res.json(user)
+    return res.redirect("http://localhost:8081")
+    // return res.json(user)
   }
 
   @Get('me')
@@ -61,5 +64,18 @@ export class AuthController {
       user: req.user
     }
   }
+
+  @Get("logout")
+  logout(@Res() res: any){
+    res.clearCookie("access_token", {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      path: '/'
+    })
+
+    return res.redirect("http://localhost:8081")
+  }
+  
 
 }
