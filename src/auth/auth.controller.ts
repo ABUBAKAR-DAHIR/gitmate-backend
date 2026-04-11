@@ -17,8 +17,9 @@ export class AuthController {
 
   @Get('google/callback')
   @UseGuards(GoogleAuthGuard)
-  googleRedirect(@Req() req, @Res() res:any) {
-    const user = req.user
+  async googleRedirect(@Req() req, @Res() res:any) {
+
+    const user = await this.authService.validateOrCreateUser(req.user)
 
     const token = this.authService.generateToken(user);
 
@@ -31,7 +32,6 @@ export class AuthController {
 
     return res.redirect("http://localhost:8081")
 
-    // return res.json(req.user)
   }
 
   @Get("github")
@@ -41,7 +41,7 @@ export class AuthController {
   @Get("github/callback")
   @UseGuards(GithubAuthGuard)
   async GithubRedirect(@Req() req: any, @Res() res: any){
-    const user = req.user
+    const user = await this.authService.validateOrCreateUser(req.user)
 
     const token = this.authService.generateToken(user);
 
@@ -53,7 +53,6 @@ export class AuthController {
     })
 
     return res.redirect("http://localhost:8081")
-    // return res.json(user)
   }
 
   @Get('me')
@@ -77,5 +76,4 @@ export class AuthController {
     return res.redirect("http://localhost:8081")
   }
   
-
 }
