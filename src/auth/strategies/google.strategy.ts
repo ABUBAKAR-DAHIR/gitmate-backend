@@ -18,9 +18,11 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     refreshToken: string,
     profile: Profile,
   ) {
-    const { name, emails, photos } = profile
+    const {id, name, emails, photos } = profile
 
     const user = {
+      provider: "google",
+      providerId: id,
       email: emails?.[0].value || null,
       firstName: name?.givenName || "",
       lastName: name?.familyName || "",

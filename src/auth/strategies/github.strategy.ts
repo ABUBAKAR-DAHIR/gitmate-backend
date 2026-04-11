@@ -14,12 +14,14 @@ export class GithubStrategy extends PassportStrategy(Strategy, "github"){
         const { id, username, displayName, emails, photos } = profile;
 
         const user = {
-        githubId: id,
-        username,
-        displayName,
-        email: emails?.[0]?.value,
-        picture: photos?.[0]?.value,
-        accessToken,
+            provider: "github",
+            providerId: id,
+            githubId: id,
+            username,
+            displayName,
+            email: emails?.[0]?.value,
+            picture: photos?.[0]?.value,
+            accessToken,
         };
 
         return user;
