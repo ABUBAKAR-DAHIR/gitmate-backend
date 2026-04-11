@@ -26,10 +26,19 @@ import { PrismaModule } from 'src/prisma/prisma.module'
   imports: [
     JwtModule.registerAsync({
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        secret: config.get<string>("JWT_SECRET"),
-        signOptions: {expiresIn: '1h'}
-      })
+      useFactory: (config: ConfigService) => {
+        const secret = config.get<string>("JWT_SECRET")
+
+        if(!secret){
+          throw new Error("JWT SECRET not found!")
+        }
+
+        return {
+          secret,
+          signOptions: {expiresIn: '24h'}
+        }
+      }
+      
     }),
     
     PassportModule,

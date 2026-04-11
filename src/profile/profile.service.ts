@@ -22,7 +22,7 @@ export class ProfileService {
     async getProfile(user: User){
         const found = await this.prisma.profile.findUnique({
             where: {userId: user.id}
-        })
+        })  
 
         if(!found) return {success: false, message: "Profile not found"}
         return {success: true, message: "Profile  found", data: found}
