@@ -48,6 +48,20 @@ model User {
   embedding   Embedding?
 }
 
+model Account {
+  id           String @id @default(uuid())
+  userId       String
+
+  provider     String
+  providerId   String
+
+  createdAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerId])
+}
+
 model Profile {
   id           String     @id @default(uuid())
   userId       String     @unique
@@ -94,18 +108,4 @@ model Embedding {
 
   // Relation
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model Account {
-  id           String @id @default(uuid())
-  userId       String
-
-  provider     String
-  providerId   String
-
-  createdAt    DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerId])
 }
