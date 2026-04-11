@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { ProfileService } from './profile.service';
 
@@ -10,9 +10,15 @@ export class ProfileController {
 
     @UseGuards(JwtAuthGuard)
     @Post()
-    async upsertProfile(@Req() req: any, @Body() body: any, @Res() res){
+    async upsertProfile(@Req() req: any, @Body() body: any){
         const prof = await this.profileService.createOrUpdateProfile(req.user.id, body);
 
-        res.json({sucess: true, data: prof})
+        return {success: true, data: prof}
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get()
+    getProfile(@Req() req){
+        return this.profileService.getProfile(req.user)
     }
 }
