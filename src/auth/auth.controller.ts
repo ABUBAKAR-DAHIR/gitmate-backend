@@ -25,8 +25,8 @@ export class AuthController {
 
     res.cookie('access_token', token, {
       httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
       path: '/'
     })
 
@@ -47,8 +47,8 @@ export class AuthController {
 
     res.cookie('access_token', token, {
       httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
       path: '/'
     })
 
@@ -68,8 +68,8 @@ export class AuthController {
   logout(@Res() res: any){
     res.clearCookie("access_token", {
       httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
       path: '/'
     })
 
