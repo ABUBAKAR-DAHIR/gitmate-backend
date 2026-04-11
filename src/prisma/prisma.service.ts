@@ -7,6 +7,9 @@ import { Pool } from 'pg';
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
     
     constructor() {
+        if (!process.env.DATABASE_URL) {
+            throw new Error("DATABASE_URL missing");
+        }
         const connectionString = process.env.DATABASE_URL;
         const pool = new Pool({ connectionString });
         const adapter = new PrismaPg(pool);
