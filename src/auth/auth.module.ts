@@ -27,7 +27,8 @@ import { PrismaModule } from 'src/prisma/prisma.module'
     JwtModule.registerAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => {
-        const secret = config.get<string>("JWT_SECRET")
+        // const secret = config.get<string>("JWT_SECRET")
+        const secret = process.env.JWT_SECRET
 
         if(!secret){
           throw new Error("JWT SECRET not found!")
@@ -38,7 +39,7 @@ import { PrismaModule } from 'src/prisma/prisma.module'
           signOptions: {expiresIn: '24h'}
         }
       }
-      
+
     }),
     
     PassportModule,
