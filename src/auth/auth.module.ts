@@ -20,6 +20,7 @@ import { GithubStrategy } from './strategies/github.strategy'
 import { JwtModule } from '@nestjs/jwt'
 import { ConfigService } from '@nestjs/config'
 import { JwtAuthGuard } from './guards/jwt.guard'
+import { PrismaModule } from 'src/prisma/prisma.module'
 
 @Module({
   imports: [
@@ -31,7 +32,9 @@ import { JwtAuthGuard } from './guards/jwt.guard'
       })
     }),
     
-    PassportModule],
+    PassportModule,
+    PrismaModule
+  ],
   controllers: [AuthController],
   providers: [AuthService, GoogleStrategy, GithubStrategy, JwtAuthGuard],
   exports: [JwtModule, JwtAuthGuard]
