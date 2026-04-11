@@ -11,9 +11,9 @@ export class ProfileController {
     @UseGuards(JwtAuthGuard)
     @Post()
     async upsertProfile(@Req() req: any, @Body() body: any){
-        const prof = await this.profileService.createOrUpdateProfile(req.user.id, body);
+        const profile = await this.profileService.createOrUpdateProfile(req.user.id, body);
 
-        return {success: true, data: prof}
+        return {success: true, data: profile}
     }
 
     @UseGuards(JwtAuthGuard)
