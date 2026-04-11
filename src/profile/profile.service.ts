@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
-import { connect } from 'http2';
+import { EmbeddingsService } from 'src/embeddings/embeddings.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class ProfileService {
-    constructor(private readonly prisma: PrismaService){}
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly embeddings: EmbeddingsService,
+    ){}
 
     async createOrUpdateProfile(userId: string, profile: any){
         const user = await this.prisma.user.findUnique({
@@ -28,6 +31,8 @@ export class ProfileService {
                 }
             }
         })
+
+        await this.embeddings.generateAndSave(user.id)
 
         return newProfile;
     }
