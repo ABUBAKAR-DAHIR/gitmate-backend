@@ -13,6 +13,7 @@ import { ProfileModule } from './profile/profile.module';
     ConfigModule.forRoot({
       isGlobal: true
     }),
+    
     AuthModule,
     EmbeddingsModule,
     PrismaModule,
