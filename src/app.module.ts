@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { EmbeddingsModule } from './embeddings/embeddings.module.js';
 import { PrismaModule } from './prisma/prisma.module.js';
 import { RecommendationsModule } from './recommendations/recommendations.module.js';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { RecommendationsModule } from './recommendations/recommendations.module.
     AuthModule,
     EmbeddingsModule,
     PrismaModule,
-    RecommendationsModule],
+    RecommendationsModule,
+    ProfileModule],
   controllers: [AppController],
   providers: [AppService],
 })
