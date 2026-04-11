@@ -30,7 +30,7 @@ export class AuthController {
       path: '/'
     })
 
-    return res.redirect("http://localhost:8081")
+    return res.redirect(process.env.FRONTEND_URL)
 
   }
 
@@ -52,7 +52,7 @@ export class AuthController {
       path: '/'
     })
 
-    return res.redirect("http://localhost:8081")
+    return res.redirect(process.env.FRONTEND_URL)
   }
 
   @Get('me')
@@ -73,7 +73,7 @@ export class AuthController {
       path: '/'
     })
 
-    return res.redirect("http://localhost:8081")
+    return res.redirect(process.env.FRONTEND_URL)
   }
   
 }
