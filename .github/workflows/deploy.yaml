@@ -1,0 +1,24 @@
+name: Deploy to ec2
+
+on: 
+    push: 
+        branches: 
+            - main
+
+jobs: 
+    deploy: 
+        runs-on: ubuntu-latest
+
+        steps: 
+          - name: SSH deploy
+            uses: appleboy/ssh-action@v1.0.3
+            with: 
+                host: ${{secrets.HOST}}
+                username: ubuntu
+                key: ${{secrets.KEY}}
+                script: |
+                    cd ~/gitmate
+                    git pull 
+                    pnpm install
+                    pnpm build 
+                    pm2 restart gitmate

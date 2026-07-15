@@ -105,18 +105,18 @@ Timezone: ${user.profile.timezone}
 
     // 5. Upsert into PostgreSQL (pgvector)
     await this.prisma.$executeRaw`
-INSERT INTO "Embedding" ("id", "userId", "embedding", "createdAt", "updatedAt")
-VALUES (
-  gen_random_uuid(),
-  ${userId},
-  ${vectorString}::vector,
-  now(),
-  now()
-)
-ON CONFLICT ("userId") DO UPDATE
-SET embedding = ${vectorString}::vector,
-    "updatedAt" = now();
-`;
+    INSERT INTO "Embedding" ("id", "userId", "embedding", "createdAt", "updatedAt")
+    VALUES (
+    gen_random_uuid(),
+    ${userId},
+    ${vectorString}::vector,
+    now(),
+    now()
+    )
+    ON CONFLICT ("userId") DO UPDATE
+    SET embedding = ${vectorString}::vector,
+        "updatedAt" = now();
+    `;
 
     // 6. Return result (optional)
     return {
