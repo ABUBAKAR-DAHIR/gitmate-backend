@@ -6,6 +6,13 @@
   "private": true,
   "license": "UNLICENSED",
   "type": "commonjs",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "esbuild"
+    ]
+  },
+
   "scripts": {
     "build": "npx nest build",
     "postinstall": "prisma generate",

@@ -28,10 +28,10 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
 
-    // "baseUrl": ".",
-    // "paths": {
-    //   "src/*": ["src/*"]
-    // }
+    // "baseUrl": "./",
+    "paths": {
+      "src/*": ["./src/*"]
+    }
   },
   "exclude": ["node_modules", "dist"]
 }
