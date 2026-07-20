@@ -15,10 +15,21 @@ jobs:
             with: 
                 host: ${{secrets.HOST}}
                 username: ubuntu
-                key: ${{secrets.KEY}}
+                key: ${{secrets.SSH_KEY}}
                 script: |
-                    cd ~/gitmate
-                    git pull 
-                    pnpm install
-                    pnpm build 
-                    pm2 restart gitmate
+                    ssh -i /home/ubuntu/.ssh/gitmate.pem \
+                    -o StrictHostKeyChecking=no \
+                    ubuntu@10.0.2.10 <<'EOF'
+
+                    set -e
+
+                    echo "===== BACKEND DEPLOYMENT STARTED ====="
+                    cd /var/www/gitmate
+                    sudo git pull 
+                    sudo pnpm install
+                    sudo pnpm build 
+                    sudo pm2 restart gitmate
+                    echo "===== BACKEND DEPLOYMENT COMPLETED ====="
+
+                    EOF
+
