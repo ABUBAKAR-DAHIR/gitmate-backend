@@ -10,26 +10,39 @@ jobs:
         runs-on: ubuntu-latest
 
         steps: 
-          - name: SSH deploy
-            uses: appleboy/ssh-action@v1.0.3
+        #   - name: SSH deploy
+        #     uses: appleboy/ssh-action@v1.0.3
+        #     with: 
+        #         host: ${{secrets.HOST}}
+        #         username: ubuntu
+        #         key: ${{secrets.SSH_KEY}}
+        #         script: |
+        #             ssh -i /home/ubuntu/.ssh/gitmate.pem \
+        #             -o StrictHostKeyChecking=no \
+        #             ubuntu@10.0.2.10 <<'EOF'
+
+        #             set -e
+
+        #             echo "===== BACKEND DEPLOYMENT STARTED ====="
+        #             cd /var/www/gitmate
+        #             sudo git pull 
+        #             sudo pnpm install
+        #             sudo pnpm build 
+        #             sudo pm2 restart gitmate
+        #             echo "===== BACKEND DEPLOYMENT COMPLETED ====="
+
+        #             EOF
+        
+          - name: Configure AWS creds
+            uses: aws-actions/configure-aws-credentials@v6
             with: 
-                host: ${{secrets.HOST}}
-                username: ubuntu
-                key: ${{secrets.SSH_KEY}}
-                script: |
-                    ssh -i /home/ubuntu/.ssh/gitmate.pem \
-                    -o StrictHostKeyChecking=no \
-                    ubuntu@10.0.2.10 <<'EOF'
+                aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+                aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+                aws-region: ap-south-1
 
-                    set -e
-
-                    echo "===== BACKEND DEPLOYMENT STARTED ====="
-                    cd /var/www/gitmate
-                    sudo git pull 
-                    sudo pnpm install
-                    sudo pnpm build 
-                    sudo pm2 restart gitmate
-                    echo "===== BACKEND DEPLOYMENT COMPLETED ====="
-
-                    EOF
+          - name: Start frontend instance refresh 
+            run: | 
+                aws autoscaling start-instance-refresh \
+                    --auto-scaling-group-name frontend-asg \
+                    --preferences MinHealthyPercentage=100
 
