@@ -40,9 +40,9 @@ jobs:
                 aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
                 aws-region: ap-south-1
 
-          - name: Start frontend instance refresh 
+          - name: Start backend instance refresh 
             run: | 
                 aws autoscaling start-instance-refresh \
-                    --auto-scaling-group-name frontend-asg \
+                    --auto-scaling-group-name backend-asg \
                     --preferences MinHealthyPercentage=100
 
