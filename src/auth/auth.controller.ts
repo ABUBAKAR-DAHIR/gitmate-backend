@@ -68,7 +68,7 @@ export class AuthController {
   logout(@Res() res: any){
     res.clearCookie("access_token", {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: 'none',
       path: '/'
     })
