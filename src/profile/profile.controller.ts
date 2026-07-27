@@ -21,4 +21,10 @@ export class ProfileController {
     getProfile(@Req() req){
         return this.profileService.getProfile(req.user)
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Get("/similar")
+    getSimilarProfiles(@Req() req){
+        return this.profileService.getSimilarProfiles(req.user)
+    }
 }

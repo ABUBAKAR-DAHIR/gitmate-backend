@@ -45,4 +45,10 @@ export class ProfileService {
         if(!found) return {success: false, message: "Profile not found"}
         return {success: true, message: "Profile  found", data: found}
     }
+
+    async getSimilarProfiles(user: User){
+        const profiles = await this.embeddings.getSimilarProfiles(user.id)
+        console.log(profiles)
+        return profiles
+    }
 }

@@ -1,8 +1,8 @@
 {
-  "name": "gitmate",
+  "name": "Gitmate",
   "version": "0.0.1",
   "description": "",
-  "author": "GitMate",
+  "author": "Gitmate",
   "private": true,
   "license": "UNLICENSED",
   "type": "commonjs",

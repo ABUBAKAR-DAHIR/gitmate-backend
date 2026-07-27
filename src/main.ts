@@ -15,7 +15,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle("Gitmate API")
-    .setDescription("API Documentation for Gitmacoote project")
+    .setDescription("API Documentation for Gitmate project")
     .setVersion("1.0")
     .build()
 
