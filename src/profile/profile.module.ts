@@ -4,10 +4,11 @@ import { ProfileService } from './profile.service';
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { JwtModule } from '@nestjs/jwt';
 import { EmbeddingsModule } from 'src/embeddings/embeddings.module';
+import { UserService } from 'src/user/user.service';
 
 @Module({
   controllers: [ProfileController],
-  providers: [ProfileService],
+  providers: [ProfileService, UserService],
   imports: [
     PrismaModule,
     JwtModule,

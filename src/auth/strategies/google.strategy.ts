@@ -18,7 +18,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     refreshToken: string,
     profile: Profile,
   ) {
-    const {id, name, emails, photos } = profile
+    const {id, name, emails, photos, displayName } = profile
 
     const user = {
       provider: "google",
@@ -27,6 +27,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       firstName: name?.givenName || "",
       lastName: name?.familyName || "",
       picture: photos?.[0].value || "",
+      displayName,
       accessToken,
     }
 

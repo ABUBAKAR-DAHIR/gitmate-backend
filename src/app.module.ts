@@ -7,6 +7,7 @@ import { EmbeddingsModule } from './embeddings/embeddings.module.js';
 import { PrismaModule } from './prisma/prisma.module.js';
 import { RecommendationsModule } from './recommendations/recommendations.module.js';
 import { ProfileModule } from './profile/profile.module';
+import { MatchesModule } from './matches/matches.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { ProfileModule } from './profile/profile.module';
     EmbeddingsModule,
     PrismaModule,
     RecommendationsModule,
-    ProfileModule],
+    ProfileModule,
+    MatchesModule],
   controllers: [AppController],
   providers: [AppService],
 })

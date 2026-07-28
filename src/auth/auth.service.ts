@@ -32,8 +32,8 @@ export class AuthService {
         const name =
             profile.displayName ||
             profile.username ||
-            'No Name';
-
+            null;
+        const displayName = name.split(/\s+/)[0];
         const image = profile.picture || null;
 
         // 1️⃣ Check if account already exists
@@ -67,7 +67,7 @@ export class AuthService {
             user = await this.prisma.user.create({
             data: {
                 email,
-                name,
+                name: displayName,
                 image,
             },
             });

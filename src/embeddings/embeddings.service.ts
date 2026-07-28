@@ -175,12 +175,16 @@ import { ConfigService } from '@nestjs/config';
             SELECT
                 e."userId",
                 u.email,
+                u.name,
+                u.image,
+
                 p.skills,
                 p.bio,
                 p.goals,
                 p.experience,
                 p.availability,
                 p.timezone,
+            
     
                 1 - (e.embedding <=> ${embedding}::vector) AS similarity
     
