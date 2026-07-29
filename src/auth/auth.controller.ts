@@ -73,7 +73,11 @@ export class AuthController {
       path: '/'
     })
 
-    return res.redirect(process.env.FRONTEND_URL)
+    return res.status(200).json({
+        success: true,
+        message: "logged out successfuly"
+    })
+    // return res.redirect(process.env.FRONTEND_URL)
   }
   
 }
