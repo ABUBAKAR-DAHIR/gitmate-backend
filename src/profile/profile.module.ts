@@ -5,10 +5,11 @@ import { PrismaModule } from 'src/prisma/prisma.module';
 import { JwtModule } from '@nestjs/jwt';
 import { EmbeddingsModule } from 'src/embeddings/embeddings.module';
 import { UserService } from 'src/user/user.service';
+import { RecommendationsService } from 'src/recommendations/recommendations.service';
 
 @Module({
   controllers: [ProfileController],
-  providers: [ProfileService, UserService],
+  providers: [ProfileService, UserService, RecommendationsService],
   imports: [
     PrismaModule,
     JwtModule,

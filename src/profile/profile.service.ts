@@ -2,12 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { EmbeddingsService } from 'src/embeddings/embeddings.service';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { RecommendationsService } from 'src/recommendations/recommendations.service';
 
 @Injectable()
 export class ProfileService {
     constructor(
         private readonly prisma: PrismaService,
         private readonly embeddings: EmbeddingsService,
+        private readonly recommendations: RecommendationsService,
     ){}
 
     async createOrUpdateProfile(userId: string, profile: any){
@@ -47,7 +49,8 @@ export class ProfileService {
     }
 
     async getSimilarProfiles(user: User){
-        const profiles = await this.embeddings.getSimilarProfiles(user.id)
+        // const profiles = await this.embeddings.getSimilarProfiles(user.id)
+        const profiles = await this.recommendations.getTopMatches(user.id)
 
         console.log(profiles)
         return profiles
