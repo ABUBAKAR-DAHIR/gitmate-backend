@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module.js';
 import cookieParser from 'cookie-parser';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -12,6 +13,14 @@ async function bootstrap() {
     origin: process.env.FRONTEND_URL,
     credentials: true
   })
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+        whitelist: true,
+        transform: true,
+        forbidNonWhitelisted: true
+    })
+  )
 
   const config = new DocumentBuilder()
     .setTitle("Gitmate API")

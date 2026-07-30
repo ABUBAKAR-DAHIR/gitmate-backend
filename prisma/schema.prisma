@@ -86,8 +86,8 @@ model Match {
   userAId   String
   userBId   String
 
-  status    String
-  score     Float?
+//   status    String
+//   score     Float?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
