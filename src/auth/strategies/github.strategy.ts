@@ -6,7 +6,7 @@ export class GithubStrategy extends PassportStrategy(Strategy, "github"){
             clientID: process.env.GITHUB_CLIENT_ID!,
             clientSecret: process.env.GITHUB_CLIENT_SECRET!,
             callbackURL: process.env.GITHUB_CALLBACK_URL!,
-            scope: ["user:email"]
+            scope: ["user:email", "read:user", "repo"]
         })
     }
 
@@ -22,6 +22,7 @@ export class GithubStrategy extends PassportStrategy(Strategy, "github"){
             email: emails?.[0]?.value,
             picture: photos?.[0]?.value,
             accessToken,
+            refreshToken
         };
 
         return user;

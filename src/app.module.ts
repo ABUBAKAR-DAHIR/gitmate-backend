@@ -8,6 +8,7 @@ import { PrismaModule } from './prisma/prisma.module.js';
 import { RecommendationsModule } from './recommendations/recommendations.module.js';
 import { ProfileModule } from './profile/profile.module';
 import { MatchesModule } from './matches/matches.module';
+import { ProjectsModule } from './projects/projects.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { MatchesModule } from './matches/matches.module';
     PrismaModule,
     RecommendationsModule,
     ProfileModule,
-    MatchesModule],
+    MatchesModule,
+    ProjectsModule],
   controllers: [AppController],
   providers: [AppService],
 })
