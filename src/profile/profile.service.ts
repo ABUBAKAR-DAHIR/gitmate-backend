@@ -39,7 +39,12 @@ export class ProfileService {
         return newProfile;
     }
 
-    async getProfile(user: User){
+    async getProfile(userId: string){
+        const user = await this.prisma.user.findUnique({
+            where: {id: userId}
+        })
+        if(!user) return {success: false, message: "User not found"}
+
         const found = await this.prisma.profile.findUnique({
             where: {userId: user.id}
         })  

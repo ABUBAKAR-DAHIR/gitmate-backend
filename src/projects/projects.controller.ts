@@ -1,4 +1,4 @@
-import { Controller, Get, Req, UseGuards, } from '@nestjs/common';
+import { Controller, Get, Param, Req, UseGuards, } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 
@@ -29,5 +29,11 @@ export class ProjectsController {
     return this.projectsService.getGithubProjects(
         req.user.id,
     );
+}
+
+    @Get('github/:id')
+    async getOthersGithubProjects(@Param('id') id: string) {
+        return this.projectsService.getGithubProjects(id);
     }
+
 }
