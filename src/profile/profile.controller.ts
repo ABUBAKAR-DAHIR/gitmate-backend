@@ -22,14 +22,15 @@ export class ProfileController {
         return this.profileService.getProfile(req.user.id)
     }
     
-    @Get(":id")
-    getOthersProfile(@Param('id') id: string){
-        return this.profileService.getProfile(id)
-    }
-    
     @UseGuards(JwtAuthGuard)
     @Get("/similar")
     getSimilarProfiles(@Req() req){
         return this.profileService.getSimilarProfiles(req.user)
     }
+    
+    @Get(":id")
+    getOthersProfile(@Param('id') id: string){
+        return this.profileService.getProfile(id)
+    }
+    
 }
