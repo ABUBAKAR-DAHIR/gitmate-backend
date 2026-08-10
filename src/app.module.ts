@@ -9,6 +9,7 @@ import { RecommendationsModule } from './recommendations/recommendations.module.
 import { ProfileModule } from './profile/profile.module';
 import { MatchesModule } from './matches/matches.module';
 import { ProjectsModule } from './projects/projects.module';
+import { ChatModule } from './chat/chat.module.js';
 
 @Module({
   imports: [
@@ -22,7 +23,9 @@ import { ProjectsModule } from './projects/projects.module';
     RecommendationsModule,
     ProfileModule,
     MatchesModule,
-    ProjectsModule],
+    ProjectsModule,
+    ChatModule
+    ],
   controllers: [AppController],
   providers: [AppService],
 })
