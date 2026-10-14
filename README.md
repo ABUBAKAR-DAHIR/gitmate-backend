@@ -211,7 +211,7 @@ Contributions, suggestions, and bug reports are welcome.
 
 <div align="center">
 
-Built by the **Gitmate Team**: Abubakar, Aniket, Ayush, and Yagna.
+Built by the **Abubakar Dahir Hassan**
 
 [![GitHub](https://img.shields.io/badge/GitHub-ABUBAKAR--DAHIR-181717?style=for-the-badge&logo=github)](https://github.com/ABUBAKAR-DAHIR)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Abubakar_Dahir_Hassan-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/abubakar-dahir/)
